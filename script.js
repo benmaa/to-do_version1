@@ -66,7 +66,48 @@ function addToDo(content){
     container.appendChild(todoItem);
 }
 
+function saveToDo(){
+    const toDoItems = [];
+    const checkboxes = document.querySelectorAll("input[type=checkbox]")
 
+    checkboxes.forEach(checkbox => {
+        toDoItems.push({ id: checkbox.id, checked: checkbox.checked });
+    });
+
+    localStorage.setItem("toDos", JSON.stringify(toDoItems));
+}
+
+window.onload = function() {
+    const savedToDos = localStorage.getItem("toDos");
+    if (savedToDos) {
+        const toDoItems = JSON.parse(savedToDos);
+        toDoItems.forEach(item => {
+            const newToDo = document.createElement("input");
+            newToDo.type = "checkbox";
+            newToDo.id = item.id;
+            newToDo.name = "toDo";
+            newToDo.checked = item.checked; // Den gespeicherten Status wiederherstellen
+
+            const label = document.createElement("label");
+            label.textContent = `ToDo ${item.id}`;
+
+            const todoItem = document.createElement("div");
+            todoItem.classList.add("toDoItem");
+
+            todoItem.appendChild(newToDo);
+            todoItem.appendChild(label);
+
+            const container = document.getElementById("section2");
+            container.appendChild(todoItem);
+        });
+    }
+}
+
+document.addEventListener("change", function(event) {
+    if (event.target.type === "checkbox") {
+        saveToDo();
+    }
+});
 function clearCheckBox() {
     const checkboxes = document.querySelectorAll('input[name="toDo"]:checked');
 
