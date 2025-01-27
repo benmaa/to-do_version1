@@ -64,6 +64,8 @@ function addToDo(content){
 
     const container = document.getElementById("section2");
     container.appendChild(todoItem);
+
+    saveToDos();
 }
 
 function saveToDo(){
