@@ -1,0 +1,11 @@
+{
+    "name": "To-Do List",
+    "short_name": "ToDo",
+    "description": "Eine einfache To-Do-Liste",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#000000"
+  }
+  
+  
